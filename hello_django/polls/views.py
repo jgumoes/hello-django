@@ -12,7 +12,9 @@ def index(request):
 # Create your views here.
 
 def detail(request, question_id):
-  return HttpResponse("You're looking at question %s." % question_id)
+  question_text = Question.objects.get(id=question_id).question_text
+  output = f"You're looking at question {question_id}: {question_text}"
+  return HttpResponse(output)
 
 def results(request, question_id):
   response = "You're looking at the results of question %s."
