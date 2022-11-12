@@ -7,14 +7,13 @@ def index(request):
   context = {
     'latest_question_list': latest_question_list,
   }
-  return HttpResponse(render(request, 'polls/index.html', context))
+  return render(request, 'polls/index.html', context)
 
 # Create your views here.
 
 def detail(request, question_id):
   question = get_object_or_404(Question, pk=question_id)
-  output = f"You're looking at question {question_id}: {question}"
-  return HttpResponse(output)
+  return render(request, 'polls/detail.html', {'question': question})
 
 def results(request, question_id):
   response = "You're looking at the results of question %s."
